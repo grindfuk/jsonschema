@@ -6,6 +6,7 @@
 var Validator = require('../lib/validator');
 var expect = require('chai').expect;
 
+
 describe('Helpers', function () {
 
   beforeEach(function () {
@@ -16,7 +17,7 @@ describe('Helpers', function () {
     it('should not throw ValidationError with throwError = false', function () {
       var self = this;
       var fn = function() { 
-          self.validator.validate(0, {'type': 'object'});
+        self.validator.validate(0, {'type': 'object'});
       };
       expect(fn).to.not.throw();
     });
@@ -24,7 +25,7 @@ describe('Helpers', function () {
     it('should throw ValidationError with throwError = true', function () {
       var self = this;
       var fn = function() { 
-          self.validator.validate(0, {'type': 'object'}, {throwError: true});
+        self.validator.validate(0, {'type': 'object'}, {throwError: true});
       };
       expect(fn).to.throw();
     });
@@ -34,6 +35,7 @@ describe('Helpers', function () {
         this.validator.validate(0, {'type': 'object'}, {throwError: true});
       } catch (error) {
         expect(error instanceof Error).to.be.true;
+        expect(error.message).to.not.be.empty;
       }
     });
   });
